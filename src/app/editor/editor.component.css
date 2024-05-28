@@ -1,0 +1,135 @@
+.wrapper{
+    width: 100vw;
+    /* border: 1px solid; */
+
+}
+
+.w-7{
+    width: 70%;
+}
+
+.head{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnSubmit{
+    width: auto;
+    height: 50px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background: lightgreen;
+    color: #fff;
+    font-size: medium;
+    border: none;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    width: 70%;
+}
+
+.input-title{
+    width: 100%;
+    height: auto;
+    outline: none;
+    padding: 16px 10px 0px;
+    font-size: 2em;
+    border: none;
+    font-weight: 600;
+    resize: none; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    line-height: 1.2;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+}
+
+.para{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+
+.para textarea{
+    margin: 10px 0 0;
+    width: 100%;
+    outline: none;
+    padding: 16px 0px 0px;
+    font-size: 21px;
+    border: none;
+    min-height: 50px; 
+    overflow: hidden; 
+    resize: none; 
+    box-sizing: border-box; 
+    line-height: 1.5; 
+    white-space: pre-wrap;
+    word-wrap: break-word; 
+}
+
+.add-img{
+    width: fit-content;
+    /* border: 1px solid; */
+    border-radius: 50%;
+    padding: 2px 10px;
+}
+
+.descriptions{
+    width: 76%;
+    margin: 0 auto;
+}
+
+.para button{
+    height: max-content;
+    /* padding: 5px; */
+    margin: auto 0;
+    border-radius: 50%;
+    width: 1.8rem;
+    font-size: 20px;
+}
+
+.options{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    border: 1px solid #ddd;
+    padding: 3px 0;
+}
+
+.hidden{
+    display: none;
+}
+
+.tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    left: 43%;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+  }
+
+  .small{
+    width: 100%;
+  }
+
+  .medium{
+    width: 120%;
+  }
+
+  .large{
+    width: 140%;
+  }
+  

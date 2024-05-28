@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <form action="" [formGroup]="myForm">
+        <div class="head">
+            <div class="title" (input)="autoResize()" #title>
+                <textarea type="text" class="input-title" placeholder="Title" formControlName="title"
+                    (input)="autoResizeTitle()" #titleTextArea (keydown.enter)="addContent(-1)"></textarea>
+            </div>
+            <button type="click" class="btnSubmit" (click)="onSubmit()">Submit</button>
+        </div>
+
+        <div formArrayName="descriptions" class="descriptions">
+            @for(item of getitems(); track item; let index = $index){
+        
+            <div class="para" [formGroupName]="index">
+                @if(focusIndex === index){
+                    <button (click)="toggleVisiblity(index)" #toggleButton>+</button>
+                }
+                @if(visibilityArr[index]){
+                <div class="options">
+                    <div class="image">
+                        <label for="image-upload">Image</label>
+                        <input type="file" id="image-upload" accept="image/*" hidden (change)="uplaodImage($event, index)">
+                    </div>
+                    <div class="video">Video</div>
+                    <div class="url">URL</div>
+                </div>
+                }
+                @if(item.value.imageUrl === ""){
+                <textarea type="text" placeholder="Tell your story..." (input)="autoResize()" #textArea formControlName="story"
+                    (keydown.enter)="addContent(index)" (keyup)="updateDescription(textArea.value, index)" (focus)="onFocus(index)"></textarea>
+                }
+                @else{
+                    <ng-template #tooltipContainer></ng-template>
+                    <div class="image-container" (click)="showTooltip(index, $event)" (keydown.enter)="addContent(index)">
+                        <img [src]="item.value.imageUrl" alt="" class="small" (click)="blur">
+                    </div>
+                }
+            </div>
+        
+            }
+        </div>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+<div class="previewHead">
+    <div class="title">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="storyBody">
+        @for(story of storyData; track story){
+            @if(story.imageUrl !== ''){
+                <app-image-view [source]="story.imageUrl" [size]="story.imagesize"></app-image-view>
+            }@else if(story.story !== ''){
+                <app-story-board [paragraph]="story.story"></app-story-board>
+            }
+        }
+        <!-- <app-story-board [paragraph]="para"></app-story-board>
+        <app-image-view [source]="imageUrl"></app-image-view> -->
+    </div>
+</div>

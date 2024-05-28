@@ -1,0 +1,21 @@
+.sectionImage img{
+    width: 95%;
+    margin: 15px 0;
+}
+
+.sectionImage{
+    display: flex;
+    justify-content: center;
+}
+
+.small{
+    width: 95%;
+}
+
+.medium{
+    width: 115%;
+}
+
+.large{
+    width: 140%;
+}
