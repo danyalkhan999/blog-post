@@ -84,7 +84,7 @@ form{
 }
 
 .descriptions{
-    width: 76%;
+    min-width: 75%;
     margin: 0 auto;
 }
 
@@ -131,5 +131,25 @@ form{
 
   .large{
     width: 140%;
+  }
+  
+  .image-upload{
+    cursor: pointer;
+  }
+
+
+.image-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 50%;       
+  }
+  
+  .image-container.medium {
+    width: 75%; 
+  }
+  
+  .image-container.large {
+    width: 95%; 
   }
   

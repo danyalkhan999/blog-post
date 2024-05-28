@@ -1,8 +1,18 @@
 .tooltip {
-    position: absolute;
-    background: white;
-    left: 43%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
+  position: absolute;
+  background: white;
+  left: 43%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip > * {
+  padding: 0.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+.tooltip > *:hover {
+  background-color: #f0f0f0;
+}

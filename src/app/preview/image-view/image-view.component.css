@@ -1,6 +1,7 @@
 .sectionImage img{
-    width: 95%;
-    margin: 15px 0;
+        margin:auto;
+        max-width: 70%;
+        height: auto;
 }
 
 .sectionImage{

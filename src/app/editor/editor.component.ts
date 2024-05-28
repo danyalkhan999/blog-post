@@ -48,6 +48,18 @@ export class EditorComponent implements OnInit, AfterViewInit{
       })
     }
 
+  onDragOver(event: DragEvent) {
+      event.preventDefault(); // Allow drop
+  }
+
+  onDrop(event: DragEvent,imInx:any) {
+      event.preventDefault();
+      const files = event.dataTransfer?.files;
+      this.toggleVisiblity(imInx);
+      if (files && files.length > 0) {
+          this.uplaodImage({ target: { files } }, imInx);
+      }
+  }
 
     getitems() {
       return (<FormArray>this.myForm.get('descriptions')).controls;
@@ -149,40 +161,81 @@ export class EditorComponent implements OnInit, AfterViewInit{
     this.focusIndex = null;
   }
 
-  showTooltip(index: number, event: MouseEvent) {
-    if (this.tooltipComponentRef) {
-      this.tooltipContainer.clear();
-      this.tooltipComponentRef = null;
-    }
+  // showTooltip(index: number, event: MouseEvent) {
+  //   if (this.tooltipComponentRef) {
+  //     this.tooltipContainer.clear();
+  //     this.tooltipComponentRef = null;
+  //   }
 
-    const componentRef = this.tooltipContainer.createComponent(ImageTooltipComponent);
-    componentRef.instance.index = index;
-    componentRef.instance.setSizeFunction = this.setImageSize.bind(this);
-    this.tooltipComponentRef = componentRef;
+  //   const componentRef = this.tooltipContainer.createComponent(ImageTooltipComponent);
+  //   componentRef.instance.index = index;
+  //   componentRef.instance.setSizeFunction = this.setImageSize.bind(this);
+  //   this.tooltipComponentRef = componentRef;
 
-    // Position the tooltip near the clicked image
-    const tooltipElement = componentRef.location.nativeElement;
-    tooltipElement.style.top = `${event.clientY}px`;
-    tooltipElement.style.left = `${event.clientX}px`;
+  //   // Position the tooltip near the clicked image
+  //   const tooltipElement = componentRef.location.nativeElement;
+  //   tooltipElement.style.top = `${event.clientY}px`;
+  //   tooltipElement.style.left = `${event.clientX}px`;
+  // }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+      if (this.tooltipComponentRef && !this.elementRef.nativeElement.contains(event.target)) {
+          this.hideTooltip();
+      }
   }
 
+  showTooltip(index: number, event: MouseEvent) {
+      if (this.tooltipComponentRef) {
+          this.tooltipContainer.clear();
+          this.tooltipComponentRef = null;
+      }
+
+      const componentRef = this.tooltipContainer.createComponent(ImageTooltipComponent);
+      componentRef.instance.index = index;
+      componentRef.instance.setSizeFunction = this.setImageSize.bind(this);
+      this.tooltipComponentRef = componentRef;
+
+      // Position the tooltip near the clicked image
+      const tooltipElement = componentRef.location.nativeElement;
+      tooltipElement.style.top = `${event.clientY}px`;
+      tooltipElement.style.left = `${event.clientX}px`;
+  }
+
+  hideTooltip() {
+      this.tooltipContainer.clear();
+      this.tooltipComponentRef = null;
+  }
+
+  // setImageSize(index: number, size: string) {
+  //   console.log(index,size)
+  //   // Implement the logic to actually change the image size, such as adding a class to the image.
+  //   console.log(`Set image size for index ${index} to ${size}`);
+  //   this.imageSizeClasses[index] = ''; 
+
+
+  //   if (size === 'small') {
+  //     this.imageSizeClasses[index] = 'small';
+  //   } else if (size === 'medium') {
+  //     this.imageSizeClasses[index] = 'medium';
+  //   } else if (size === 'large') {
+  //     this.imageSizeClasses[index] = 'large';
+  //   }
+
+  //   this.tooltipContainer.clear();
+  //   this.tooltipComponentRef = null;
+  // }
+
   setImageSize(index: number, size: string) {
-    // Implement the logic to actually change the image size, such as adding a class to the image.
-    console.log(`Set image size for index ${index} to ${size}`);
-    this.imageSizeClasses[index] = ''; 
+    const descriptions = this.myForm.get('descriptions') as FormArray;
+    const descriptionFormGroup = descriptions.at(index) as FormGroup;
 
-
-    if (size === 'small') {
-      this.imageSizeClasses[index] = 'small';
-    } else if (size === 'medium') {
-      this.imageSizeClasses[index] = 'medium';
-    } else if (size === 'large') {
-      this.imageSizeClasses[index] = 'large';
-    }
+    descriptionFormGroup.get('imageSize')!.setValue(size); // Store the size in the form
 
     this.tooltipContainer.clear();
     this.tooltipComponentRef = null;
-  }
+}
+
 
   onSubmit(){
     // console.log("SUBMMITTED",this.myForm)
